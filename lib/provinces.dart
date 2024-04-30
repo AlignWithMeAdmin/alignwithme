@@ -4,7 +4,7 @@ List<String> provinces = [
   'Western',
   'North Central',
   'Central',
-  'Sabaragamuwa'
+  'Sabaragamuwa',
   'Eastern',
   'Uva',
   'Southern'
