@@ -1,6 +1,7 @@
 import 'package:align_with_me/layout.dart';
 import 'package:align_with_me/homePage.dart';
 import 'package:flutter/material.dart';
+import 'package:charts_flutter/flutter.dart' as charts;
 
 class ResultPage extends StatelessWidget {
   final String resultMessage;
@@ -23,8 +24,9 @@ class ResultPage extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(20.0),
               child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
+                //scrollDirection: Axis.horizontal,
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
@@ -62,6 +64,33 @@ class ResultPage extends StatelessWidget {
                       description:
                           'Politicians are people who are politically active, especially in party politics',
                     ),
+                    const SizedBox(height: 40),
+                
+                    SizedBox(
+                      height: 200,
+                      child: BarChartWidget(),
+                    ),
+              
+                    const SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          onPressed: (){
+                            //Go to 
+                          },
+                          child: const Text('Restart Quiz'),
+                        ),
+                        const SizedBox(width: 16),
+                        ElevatedButton(
+                          onPressed: (){
+                            //Download, email, social media? Need account?
+                          },
+                          child: const Text('Share Results'),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
                   ],
                 ),
               ),
@@ -100,18 +129,84 @@ class ResultPage extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              mark,
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            Container(
+              padding: const EdgeInsets.all(8.0), 
+              color: Colors.grey[700],
+              height: 100,
+              child: Center(
+                child: Text(
+                  mark,
+                  style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+                ),
+              ),
+            ),
+          ]
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(8.0),
+              child: Center(
+                child: Text(
+                  description,
+                  style: const TextStyle(fontSize: 16),
+                ),
+              ),
             ),
             const SizedBox(height: 10),
-            Text(
-              description,
-              style: const TextStyle(fontSize: 16),
+            TextButton(
+              onPressed: () {
+                // Navigate to the compare answers page
+                
+              },
+              child: const Text('Compare Answers'),
             ),
-          ],
-        ),
+            ]
+        )
       ],
     );
   }
+}
+
+class BarChartWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return charts.BarChart(
+      _createSampleData(),
+      animate: true,
+      behaviors: [
+          charts.ChartTitle('Comparison Chart', behaviorPosition: charts.BehaviorPosition.top, titleOutsideJustification: charts.OutsideJustification.middleDrawArea),
+          charts.ChartTitle('Horizontal axis', behaviorPosition: charts.BehaviorPosition.bottom, titleOutsideJustification: charts.OutsideJustification.middleDrawArea),
+          charts.ChartTitle('Vertical axis', behaviorPosition: charts.BehaviorPosition.start, titleOutsideJustification: charts.OutsideJustification.middleDrawArea),
+        ],
+    );
+  }
+
+  static List<charts.Series<CandidateAlignment, String>> _createSampleData() {
+    final data = [
+      //Random data
+      CandidateAlignment('A', 80),
+      CandidateAlignment('B', 75),
+      CandidateAlignment('C', 85),
+      CandidateAlignment('D', 70),
+    ];
+
+    return [
+      charts.Series<CandidateAlignment, String>(
+        id: 'Percentage',
+        colorFn: (_, __) => charts.MaterialPalette.gray.shade800,
+        domainFn: (CandidateAlignment alignment, _) => alignment.candidate,
+        measureFn: (CandidateAlignment alignment, _) => alignment.percentage,
+        data: data,
+      )
+    ];
+  }
+}
+
+class CandidateAlignment {
+  final String candidate;
+  final int percentage;
+
+  CandidateAlignment(this.candidate, this.percentage);
 }
