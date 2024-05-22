@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'provinces.dart';
 import 'districts.dart';
 import 'polling_divisions.dart';
+//import 'dart:convert';
+//import 'package:http/http.dart' as http;
 
 class RegistrationForm extends StatefulWidget {
   const RegistrationForm({Key? key}) : super(key: key);
@@ -17,6 +19,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
   late List<String> _provinces;
   List<String> _districts = [];
   List<String> _pollingDivisions = [];
+  final _formKey = GlobalKey<FormState>();
 
   final List<String> _genders = ['Male', 'Female'];
   final List<String> _ageGroups = ['18-35', '36-55'];
@@ -35,6 +38,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
   // Define variables for email and password
   late TextEditingController _emailController;
   late TextEditingController _passwordController;
+  late TextEditingController _nameController;
 
   @override
   void initState() {
@@ -42,13 +46,55 @@ class _RegistrationFormState extends State<RegistrationForm> {
     _provinces = provinces;
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
+    _nameController = TextEditingController();
   }
 
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _nameController.dispose();
     super.dispose();
+  }
+
+  Future<void> _submitForm() async {
+    // if (_formKey.currentState!.validate()) {
+    //   final response = await http.post(
+    //     Uri.parse('http://localhost:8082/api_v1/users'),
+    //     headers: <String, String>{
+    //       'Content-Type': 'application/json; charset=UTF-8',
+    //     },
+    //     body: jsonEncode(<String, dynamic>{
+    //       'name': _nameController.text,
+    //       'province': _selectedProvince,
+    //       'district': _selectedDistrict,
+    //       'pollingDivision': _selectedPollingDivision,
+    //       'gender': _selectedGender,
+    //       'ageGroup': _selectedAgeGroup,
+    //       'levelOfEducation': _selectedLevelOfEducation,
+    //       'occupation': _selectedOccupation,
+    //       'email': _emailController.text,
+    //       'password': _passwordController.text,
+    //     }),
+    //   );
+
+    //   if (response.statusCode == 201) {
+    //     // User added successfully
+    //     print('User added successfully');
+    //     Navigator.pushReplacement(
+    //       context,
+    //       MaterialPageRoute(
+    //           builder: (context) => const ResultPage(
+    //                 resultMessage: 'Hi User',
+    //               )),
+    //     );
+    //   } else {
+    //     // Failed to add user
+    //     print('Failed to add user: ${response.reasonPhrase}');
+    //     // Show error message or handle error accordingly
+    //     //this is for temorary usage only
+    //   }
+    // }
   }
 
   @override
@@ -68,16 +114,11 @@ class _RegistrationFormState extends State<RegistrationForm> {
               padding: const EdgeInsets.all(20.0),
               child: SingleChildScrollView(
                 child: Form(
+                  key: _formKey,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'Create an Account',
-                        style: TextStyle(
-                          fontSize: 24.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
                       const SizedBox(height: 20.0),
                       // Dropdown for Province
                       SizedBox(
@@ -98,8 +139,14 @@ class _RegistrationFormState extends State<RegistrationForm> {
                               _pollingDivisions = [];
                             });
                           },
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please select a province';
+                            }
+                            return null;
+                          },
                           decoration: const InputDecoration(
-                            labelText: 'Province',
+                            labelText: 'Province *',
                             filled: true,
                             fillColor: Color.fromARGB(255, 228, 225, 225),
                           ),
@@ -125,8 +172,14 @@ class _RegistrationFormState extends State<RegistrationForm> {
                               _selectedPollingDivision = null;
                             });
                           },
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please select a district';
+                            }
+                            return null;
+                          },
                           decoration: const InputDecoration(
-                            labelText: 'District',
+                            labelText: 'District *',
                             filled: true,
                             fillColor: Color.fromARGB(255, 228, 225, 225),
                           ),
@@ -149,15 +202,21 @@ class _RegistrationFormState extends State<RegistrationForm> {
                               _selectedPollingDivision = newValue as String?;
                             });
                           },
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please select a polling division';
+                            }
+                            return null;
+                          },
                           decoration: const InputDecoration(
-                            labelText: 'Polling Division',
+                            labelText: 'Polling Division *',
                             filled: true,
                             fillColor: Color.fromARGB(255, 228, 225, 225),
                           ),
                         ),
                       ),
                       const SizedBox(height: 10.0),
-// Dropdown for Gender
+                      // Dropdown for Gender
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.5,
                         child: DropdownButtonFormField(
@@ -256,63 +315,22 @@ class _RegistrationFormState extends State<RegistrationForm> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 10.0),
-                      // Text Field for Email
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.5,
-                        child: TextFormField(
-                          controller: _emailController,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your email';
-                            }
-                            if (!value.contains('@')) {
-                              return 'Please enter a valid email address';
-                            }
-                            return null;
-                          },
-                          decoration: const InputDecoration(
-                            labelText: 'Email',
-                            filled: true,
-                            fillColor: Color.fromARGB(255, 228, 225, 225),
-                            //border: OutlineInputBorder(),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 10.0),
-                      // Text Field for Password
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.5,
-                        child: TextFormField(
-                          controller: _passwordController,
-                          obscureText: true,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your password';
-                            }
-                            if (value.length < 6) {
-                              return 'Password must be at least 6 characters long';
-                            }
-                            return null;
-                          },
-                          decoration: const InputDecoration(
-                            labelText: 'Password',
-                            filled: true,
-                            fillColor: Color.fromARGB(255, 228, 225, 225),
-                            //border: OutlineInputBorder(),
-                          ),
-                        ),
-                      ),
                       const SizedBox(height: 20.0),
                       ElevatedButton(
-                        onPressed: () async {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  const ResultPage(resultMessage: 'Success!'),
-                            ),
-                          );
+                        //onPressed: _submitForm,
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            // If the form is valid, proceed with form submission
+                            // _submitForm();
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const ResultPage(
+                                  resultMessage: '',
+                                ),
+                              ),
+                            );
+                          }
                         },
                         child: const Text('Submit'),
                       ),

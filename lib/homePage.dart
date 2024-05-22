@@ -87,30 +87,32 @@ class ContentView extends StatelessWidget {
                   20.0), // Add padding around the container
               child: Container(
                 color: const Color.fromARGB(255, 157, 160, 163),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: 20.0), // Add horizontal padding
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min, // Set mainAxisSize to min
-                    crossAxisAlignment:
-                        CrossAxisAlignment.start, // Align text to the left
-                    children: [
-                      Text(
-                        'The definition of candidate selection methods is the predominantly nonstandardized and unregimented mechanisms by which political parties choose their candidates for the general elections. The importance of candidate selection is not only for the candidates and their parties, but also for their parent legislature and its performance – it influences the balance of power within the party, determines the personal composition of parliaments, and impacts on the behavior of legislators.',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16.0,
+                child: SingleChildScrollView(
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: 20.0), // Add horizontal padding
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min, // Set mainAxisSize to min
+                      crossAxisAlignment:
+                          CrossAxisAlignment.start, // Align text to the left
+                      children: [
+                        Text(
+                          'The definition of candidate selection methods is the predominantly nonstandardized and unregimented mechanisms by which political parties choose their candidates for the general elections. The importance of candidate selection is not only for the candidates and their parties, but also for their parent legislature and its performance – it influences the balance of power within the party, determines the personal composition of parliaments, and impacts on the behavior of legislators.',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16.0,
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 20), // Add space between the two texts
-                      Text(
-                        'The definition of candidate selection methods is the predominantly nonstandardized and unregimented mechanisms by which political parties choose their candidates for the general elections.',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16.0,
+                        SizedBox(height: 20), // Add space between the two texts
+                        Text(
+                          'The definition of candidate selection methods is the predominantly nonstandardized and unregimented mechanisms by which political parties choose their candidates for the general elections.',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16.0,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

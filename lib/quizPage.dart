@@ -73,6 +73,12 @@ class _QuizViewState extends State<QuizView> {
     },
   ];
 
+  bool get isSubmitButtonEnabled {
+    // Check if all questions have been answered
+    return _questions.every((question) =>
+        question['selectedValue'] != ''); // Check if option is selected
+  }
+
   @override
   void initState() {
     super.initState();
@@ -148,6 +154,7 @@ class _QuizViewState extends State<QuizView> {
   Widget _buildQuestionPage(BuildContext context, int index) {
     final isLastQuestion = index == _questions.length - 1;
     final question = _questions[index]['question'] as String;
+    final bool isOptionSelected = _questions[index]['selectedValue'] != '';
 
     return Container(
       color: const Color.fromARGB(255, 157, 160, 163),
@@ -204,22 +211,30 @@ class _QuizViewState extends State<QuizView> {
               const SizedBox(width: 20.0),
               if (isLastQuestion)
                 ElevatedButton(
-                  onPressed: () {
-                    _navigateToLoginPage(context); // Navigate to LoginPage
-                  },
+                  onPressed: isSubmitButtonEnabled
+                      ? () {
+                          _navigateToLoginPage(
+                              context); // Navigate to LoginPage
+                        }
+                      : null, // Disable button if not all questions are answered
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(255, 97, 98, 99),
+                    backgroundColor: isSubmitButtonEnabled
+                        ? const Color.fromARGB(255, 97, 98, 99)
+                        : Colors
+                            .grey, // Change button color based on enabled state
                   ),
                   child: const Text(
                     'Submit',
                     style: TextStyle(
-                      color: Colors.white, // Set text color to white
+                      color: Color.fromARGB(255, 32, 10, 10),
                     ),
                   ),
                 ),
               if (!isLastQuestion && index < _questions.length - 1)
                 ElevatedButton(
-                  onPressed: _nextPage,
+                  onPressed: isOptionSelected
+                      ? _nextPage
+                      : null, // Disable button if no option selected
                   child: const Text('Next'),
                 ),
             ],

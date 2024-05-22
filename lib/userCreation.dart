@@ -1,6 +1,6 @@
+import 'package:align_with_me/newUser.dart';
 import 'package:flutter/material.dart';
 import 'package:align_with_me/layout.dart';
-import 'package:align_with_me/resultPage.dart';
 import 'package:align_with_me/userRegistrationForm.dart';
 import 'package:align_with_me/homePage.dart';
 
@@ -70,7 +70,13 @@ class LoginPage extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.25,
                     child: ElevatedButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const RegistrationForm()),
+                        );
+                      },
                       icon: const Icon(Icons.facebook, color: Colors.white),
                       label: const Text(
                         'Sign Up with Facebook',
@@ -85,7 +91,13 @@ class LoginPage extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.25,
                     child: ElevatedButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const RegistrationForm()),
+                        );
+                      },
                       icon: const Icon(Icons.mail, color: Colors.white),
                       label: const Text(
                         'Sign Up with Gmail',
@@ -104,7 +116,7 @@ class LoginPage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => RegistrationForm()),
+                              builder: (context) => const NewUser()),
                         );
                       },
                       child: const Text('Create New Account'),
@@ -118,9 +130,7 @@ class LoginPage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>
-                                const ResultPage(resultMessage: 'Success!'),
-                          ),
+                              builder: (context) => const RegistrationForm()),
                         );
                       },
                       child: const Text('Continue as Guest'),

@@ -3,6 +3,7 @@ import 'package:align_with_me/userRegistrationForm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart'; // Import rendering.dart for SystemMouseCursors
 import 'homePage.dart';
+import 'package:align_with_me/newUser.dart';
 
 class AlignWithMeAppBar extends StatelessWidget implements PreferredSizeWidget {
   const AlignWithMeAppBar({Key? key}) : super(key: key);
@@ -80,7 +81,7 @@ class AlignWithMeAppBar extends StatelessWidget implements PreferredSizeWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => RegistrationForm()),
+                  MaterialPageRoute(builder: (context) => const NewUser()),
                 );
               },
               child: const Text(
