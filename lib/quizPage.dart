@@ -1,6 +1,7 @@
 import 'package:align_with_me/layout.dart';
 import 'package:align_with_me/homePage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'userCreation.dart';
 
 class QuizView extends StatefulWidget {
@@ -186,12 +187,14 @@ class _QuizViewState extends State<QuizView> {
           const SizedBox(height: 20.0),
           Row(
             children: [
-              Text(
-                question,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 20.0,
+              Expanded(
+                child: Text(
+                  question,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 20.0,
+                  ),
                 ),
               ),
             ],
