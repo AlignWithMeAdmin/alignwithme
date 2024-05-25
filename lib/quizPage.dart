@@ -190,7 +190,7 @@ class _QuizViewState extends State<QuizView> {
               Expanded(
                 child: Text(
                   question,
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.left,
                   style: const TextStyle(
                     color: Colors.black,
                     fontSize: 20.0,
