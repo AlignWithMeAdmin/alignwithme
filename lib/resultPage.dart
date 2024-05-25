@@ -2,6 +2,7 @@ import 'package:align_with_me/layout.dart';
 import 'package:align_with_me/homePage.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:align_with_me/userCreation.dart';
 
 class ResultPage extends StatelessWidget {
   final String resultMessage;
@@ -77,7 +78,10 @@ class ResultPage extends StatelessWidget {
                       children: [
                         ElevatedButton(
                           onPressed: (){
-                            //Go to 
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const AlighWithMeLayout()),
+                            );
                           },
                           child: const Text('Restart Quiz'),
                         ),
@@ -85,6 +89,10 @@ class ResultPage extends StatelessWidget {
                         ElevatedButton(
                           onPressed: (){
                             //Download, email, social media? Need account?
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const LoginPage()),
+                            );
                           },
                           child: const Text('Share Results'),
                         ),

@@ -13,6 +13,7 @@ class QuizView extends StatefulWidget {
 class _QuizViewState extends State<QuizView> {
   late PageController _pageController;
   int _currentPageIndex = 0;
+  double _progressValue = 0.0;
 
   final List<Map<String, dynamic>> _questions = [
     {
@@ -155,10 +156,11 @@ class _QuizViewState extends State<QuizView> {
     final isLastQuestion = index == _questions.length - 1;
     final question = _questions[index]['question'] as String;
     final bool isOptionSelected = _questions[index]['selectedValue'] != '';
+    _progressValue = (_currentPageIndex+1) / _questions.length;
 
     return Container(
       color: const Color.fromARGB(255, 157, 160, 163),
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(26.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -172,15 +174,27 @@ class _QuizViewState extends State<QuizView> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(
-              height: 10.0), // Add some spacing between the title and question
-          Text(
-            question,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              color: Colors.black,
-              fontSize: 20.0,
+          const SizedBox(height: 10.0), // Add some spacing between the title and question
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: LinearProgressIndicator(
+              value: _progressValue,
+              //backgroundColor: Colors.grey[200],
+              //valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
             ),
+          ),
+          const SizedBox(height: 20.0),
+          Row(
+            children: [
+              Text(
+                question,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 20.0,
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 20.0),
           Column(
@@ -220,8 +234,7 @@ class _QuizViewState extends State<QuizView> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: isSubmitButtonEnabled
                         ? const Color.fromARGB(255, 97, 98, 99)
-                        : Colors
-                            .grey, // Change button color based on enabled state
+                        : Colors.grey, // Change button color based on enabled state
                   ),
                   child: const Text(
                     'Submit',
