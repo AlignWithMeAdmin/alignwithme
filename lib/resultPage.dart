@@ -1,7 +1,8 @@
 import 'package:align_with_me/layout.dart';
 import 'package:align_with_me/homePage.dart';
 import 'package:flutter/material.dart';
-import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:community_charts_flutter/community_charts_flutter.dart'
+    as charts;
 import 'package:align_with_me/userCreation.dart';
 
 class ResultPage extends StatelessWidget {
@@ -66,32 +67,33 @@ class ResultPage extends StatelessWidget {
                           'Politicians are people who are politically active, especially in party politics',
                     ),
                     const SizedBox(height: 40),
-                
                     SizedBox(
                       height: 200,
                       child: BarChartWidget(),
                     ),
-              
                     const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         ElevatedButton(
-                          onPressed: (){
+                          onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => const AlighWithMeLayout()),
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const AlighWithMeLayout()),
                             );
                           },
                           child: const Text('Restart Quiz'),
                         ),
                         const SizedBox(width: 16),
                         ElevatedButton(
-                          onPressed: (){
+                          onPressed: () {
                             //Download, email, social media? Need account?
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => const LoginPage()),
+                              MaterialPageRoute(
+                                  builder: (context) => const LoginPage()),
                             );
                           },
                           child: const Text('Share Results'),
@@ -134,44 +136,39 @@ class ResultPage extends StatelessWidget {
         ),
         const SizedBox(width: 10),
         // Column for mark and description
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(8.0), 
-              color: Colors.grey[700],
-              height: 100,
-              child: Center(
-                child: Text(
-                  mark,
-                  style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
-                ),
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Container(
+            padding: const EdgeInsets.all(8.0),
+            color: Colors.grey[700],
+            height: 100,
+            child: Center(
+              child: Text(
+                mark,
+                style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
               ),
             ),
-          ]
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(8.0),
-              child: Center(
-                child: Text(
-                  description,
-                  style: const TextStyle(fontSize: 16),
-                ),
-              ),
+          ),
+        ]),
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Container(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              description,
+              style: const TextStyle(fontSize: 16),
+              overflow: TextOverflow.ellipsis,
             ),
-            const SizedBox(height: 10),
-            TextButton(
-              onPressed: () {
-                // Navigate to the compare answers page
-                
-              },
-              child: const Text('Compare Answers'),
-            ),
-            ]
-        )
+          ),
+          const SizedBox(height: 10),
+          TextButton(
+            onPressed: () {
+              // Navigate to the compare answers page
+            },
+            child: const Text('Compare Answers'),
+          ),
+        ])
       ],
     );
   }
@@ -184,10 +181,19 @@ class BarChartWidget extends StatelessWidget {
       _createSampleData(),
       animate: true,
       behaviors: [
-          charts.ChartTitle('Comparison Chart', behaviorPosition: charts.BehaviorPosition.top, titleOutsideJustification: charts.OutsideJustification.middleDrawArea),
-          charts.ChartTitle('Horizontal axis', behaviorPosition: charts.BehaviorPosition.bottom, titleOutsideJustification: charts.OutsideJustification.middleDrawArea),
-          charts.ChartTitle('Vertical axis', behaviorPosition: charts.BehaviorPosition.start, titleOutsideJustification: charts.OutsideJustification.middleDrawArea),
-        ],
+        charts.ChartTitle('Comparison Chart',
+            behaviorPosition: charts.BehaviorPosition.top,
+            titleOutsideJustification:
+                charts.OutsideJustification.middleDrawArea),
+        charts.ChartTitle('Horizontal axis',
+            behaviorPosition: charts.BehaviorPosition.bottom,
+            titleOutsideJustification:
+                charts.OutsideJustification.middleDrawArea),
+        charts.ChartTitle('Vertical axis',
+            behaviorPosition: charts.BehaviorPosition.start,
+            titleOutsideJustification:
+                charts.OutsideJustification.middleDrawArea),
+      ],
     );
   }
 
