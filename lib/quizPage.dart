@@ -154,41 +154,43 @@ class _QuizViewState extends State<QuizView> {
   }
 
   Widget _buildQuestionPage(BuildContext context, int index) {
-    final isLastQuestion = index == _questions.length - 1;
-    final question = _questions[index]['question'] as String;
-    final bool isOptionSelected = _questions[index]['selectedValue'] != '';
-    _progressValue = (_currentPageIndex+1) / _questions.length;
+  final isLastQuestion = index == _questions.length - 1;
+  final question = _questions[index]['question'] as String;
+  final bool isOptionSelected = _questions[index]['selectedValue'] != '';
+  _progressValue = (_currentPageIndex + 1) / _questions.length;
 
-    return Container(
-      color: const Color.fromARGB(255, 157, 160, 163),
-      padding: const EdgeInsets.all(26.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 20.0),
-          const Text(
-            '2024 Presidential Quiz',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
-            ),
+  return Container(
+    color: const Color.fromARGB(255, 157, 160, 163),
+    padding: const EdgeInsets.all(26.0),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(height: 20.0),
+        const Text(
+          '2024 Presidential Quiz',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
           ),
-          const SizedBox(height: 10.0), // Add some spacing between the title and question
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: LinearProgressIndicator(
-              value: _progressValue,
-              //backgroundColor: Colors.grey[200],
-              //valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
-            ),
+        ),
+        const SizedBox(height: 10.0), // Add some spacing between the title and question
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: LinearProgressIndicator(
+            value: _progressValue,
+            //backgroundColor: Colors.grey[200],
+            //valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
           ),
-          const SizedBox(height: 20.0),
-          Row(
-            children: [
-              Expanded(
-                child: Text(
+        ),
+        const SizedBox(height: 20.0),
+        Expanded(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
                   question,
                   textAlign: TextAlign.left,
                   style: const TextStyle(
@@ -196,68 +198,68 @@ class _QuizViewState extends State<QuizView> {
                     fontSize: 20.0,
                   ),
                 ),
+                const SizedBox(height: 20.0),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: _questions[index]['options']
+                      .map<Widget>((option) => RadioListTile<String>(
+                            title: Text(option,
+                                style: const TextStyle(color: Colors.black)),
+                            value: option,
+                            groupValue: _questions[index]['selectedValue'],
+                            onChanged: (value) {
+                              setState(() {
+                                _questions[index]['selectedValue'] = value;
+                              });
+                            },
+                          ))
+                      .toList(),
+                ),
+              ],
+            ),
+          ),
+        ),
+        const SizedBox(height: 20.0),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (index > 0)
+              ElevatedButton(
+                onPressed: _previousPage,
+                child: const Text('Previous'),
               ),
-            ],
-          ),
-          const SizedBox(height: 20.0),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: _questions[index]['options']
-                .map<Widget>((option) => RadioListTile<String>(
-                      title: Text(option,
-                          style: const TextStyle(color: Colors.black)),
-                      value: option,
-                      groupValue: _questions[index]['selectedValue'],
-                      onChanged: (value) {
-                        setState(() {
-                          _questions[index]['selectedValue'] = value;
-                        });
-                      },
-                    ))
-                .toList(),
-          ),
-          const Spacer(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              if (index > 0)
-                ElevatedButton(
-                  onPressed: _previousPage,
-                  child: const Text('Previous'),
+            const SizedBox(width: 20.0),
+            if (isLastQuestion)
+              ElevatedButton(
+                onPressed: isSubmitButtonEnabled
+                    ? () {
+                        _navigateToLoginPage(context); // Navigate to LoginPage
+                      }
+                    : null, // Disable button if not all questions are answered
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: isSubmitButtonEnabled
+                      ? const Color.fromARGB(255, 97, 98, 99)
+                      : Colors.grey, // Change button color based on enabled state
                 ),
-              const SizedBox(width: 20.0),
-              if (isLastQuestion)
-                ElevatedButton(
-                  onPressed: isSubmitButtonEnabled
-                      ? () {
-                          _navigateToLoginPage(
-                              context); // Navigate to LoginPage
-                        }
-                      : null, // Disable button if not all questions are answered
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: isSubmitButtonEnabled
-                        ? const Color.fromARGB(255, 97, 98, 99)
-                        : Colors.grey, // Change button color based on enabled state
-                  ),
-                  child: const Text(
-                    'Submit',
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 32, 10, 10),
-                    ),
+                child: const Text(
+                  'Submit',
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 32, 10, 10),
                   ),
                 ),
-              if (!isLastQuestion && index < _questions.length - 1)
-                ElevatedButton(
-                  onPressed: isOptionSelected
-                      ? _nextPage
-                      : null, // Disable button if no option selected
-                  child: const Text('Next'),
-                ),
-            ],
-          ),
-          const SizedBox(height: 20.0),
-        ],
-      ),
-    );
-  }
+              ),
+            if (!isLastQuestion && index < _questions.length - 1)
+              ElevatedButton(
+                onPressed: isOptionSelected
+                    ? _nextPage
+                    : null, // Disable button if no option selected
+                child: const Text('Next'),
+              ),
+          ],
+        ),
+        const SizedBox(height: 20.0),
+      ],
+    ),
+  );
+}
 }

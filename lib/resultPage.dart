@@ -1,8 +1,7 @@
 import 'package:align_with_me/layout.dart';
 import 'package:align_with_me/homePage.dart';
 import 'package:flutter/material.dart';
-import 'package:community_charts_flutter/community_charts_flutter.dart'
-    as charts;
+import 'package:community_charts_flutter/community_charts_flutter.dart' as charts;
 import 'package:align_with_me/userCreation.dart';
 
 class ResultPage extends StatelessWidget {
@@ -116,27 +115,29 @@ class ResultPage extends StatelessWidget {
   }
 
   Widget _buildImageWithMarkAndDescription({
-    required String imagePath,
-    required String mark,
-    required String description,
-  }) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Column for image
-        Column(
-          children: [
-            Image.asset(
-              imagePath,
-              width: 100,
-              height: 100,
-            ),
-            const SizedBox(height: 10),
-          ],
-        ),
-        const SizedBox(width: 10),
-        // Column for mark and description
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+  required String imagePath,
+  required String mark,
+  required String description,
+}) {
+  return Row(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      // Column for image
+      Column(
+        children: [
+          Image.asset(
+            imagePath,
+            width: 100,
+            height: 100,
+          ),
+          const SizedBox(height: 10),
+        ],
+      ),
+      const SizedBox(width: 10),
+      // Column for mark
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
           Container(
             padding: const EdgeInsets.all(8.0),
             color: Colors.grey[700],
@@ -145,34 +146,43 @@ class ResultPage extends StatelessWidget {
               child: Text(
                 mark,
                 style: const TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),
-        ]),
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Container(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              description,
-              style: const TextStyle(fontSize: 16),
-              overflow: TextOverflow.ellipsis,
+        ],
+      ),
+      const SizedBox(width: 10),
+      // Flexible widget for description and button
+      Flexible(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                description,
+                style: const TextStyle(fontSize: 16),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 3, // Adjust the maxLines as needed
+              ),
             ),
-          ),
-          const SizedBox(height: 10),
-          TextButton(
-            onPressed: () {
-              // Navigate to the compare answers page
-            },
-            child: const Text('Compare Answers'),
-          ),
-        ])
-      ],
-    );
-  }
-}
+            const SizedBox(height: 10),
+            TextButton(
+              onPressed: () {
+                // Navigate to the compare answers page
+              },
+              child: const Text('Compare Answers'),
+            ),
+          ],
+        ),
+      ),
+    ],
+  );
+}}
 
 class BarChartWidget extends StatelessWidget {
   @override
