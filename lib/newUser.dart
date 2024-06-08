@@ -2,6 +2,7 @@ import 'package:align_with_me/homePage.dart';
 import 'package:align_with_me/layout.dart';
 import 'package:align_with_me/userRegistrationForm.dart';
 import 'package:flutter/material.dart';
+import 'package:email_validator/email_validator.dart';
 
 class NewUser extends StatefulWidget {
   const NewUser({Key? key}) : super(key: key);
@@ -39,7 +40,7 @@ class _NewUserState extends State<NewUser> {
             child: Center(
               child: Form(
                 key: _formKey,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
+                autovalidateMode: AutovalidateMode.disabled,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -63,12 +64,11 @@ class _NewUserState extends State<NewUser> {
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter an email';
+                          } else if (!EmailValidator.validate(value)) {   // Email validation logic
+                              return 'Please enter a valid email';
+                          } else {
+                            return null;
                           }
-                          // Email validation logic
-                          if (!value.contains('@')) {
-                            return 'Please enter a valid email';
-                          }
-                          return null;
                         },
                       ),
                     ),
