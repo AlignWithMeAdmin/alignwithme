@@ -40,7 +40,6 @@ class _NewUserState extends State<NewUser> {
             child: Center(
               child: Form(
                 key: _formKey,
-                autovalidateMode: AutovalidateMode.disabled,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -56,6 +55,7 @@ class _NewUserState extends State<NewUser> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.25,
                       child: TextFormField(
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
                         decoration: const InputDecoration(
                           labelText: 'Email *',
                           filled: true,
@@ -76,6 +76,7 @@ class _NewUserState extends State<NewUser> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.25,
                       child: TextFormField(
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
                         decoration: const InputDecoration(
                           labelText: 'Username *',
                           filled: true,
@@ -93,6 +94,7 @@ class _NewUserState extends State<NewUser> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.25,
                       child: TextFormField(
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
                         obscureText: true,
                         decoration: const InputDecoration(
                           labelText: 'Password *',
@@ -116,6 +118,7 @@ class _NewUserState extends State<NewUser> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.25,
                       child: TextFormField(
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
                         obscureText: true,
                         decoration: const InputDecoration(
                           labelText: 'Confirm Password *',
