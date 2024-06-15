@@ -102,28 +102,35 @@ class _RegistrationFormState extends State<RegistrationForm> {
     return Scaffold(
       appBar: const AlignWithMeAppBar(),
       backgroundColor: const Color.fromARGB(255, 157, 160, 163),
-      body: Row(
+      body: ResponsiveRowColumn(
         children: [
-          const Expanded(
-            flex: 1,
-            child: LeftNavView(),
-          ),
+          if (isDesktop(context))
+            const Expanded(
+              flex: 1,
+              child: LeftNavView(),
+            )
+          else
+            const Expanded(
+                flex: 1,
+                child: TopNavView(),
+              ),
           Expanded(
-            flex: 3,
+            flex: isDesktop(context) ? 3: 8,
             child: Padding(
               padding: const EdgeInsets.all(20.0),
               child: SingleChildScrollView(
                 child: Form(
                   key: _formKey,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  //autovalidateMode: AutovalidateMode.onUserInteraction,
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const SizedBox(height: 20.0),
                       // Dropdown for Province
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.5,
                         child: DropdownButtonFormField(
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
                           value: _selectedProvince,
                           items: _provinces.map((province) {
                             return DropdownMenuItem(
@@ -157,6 +164,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.5,
                         child: DropdownButtonFormField(
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
                           value: _selectedDistrict,
                           items: _districts.map((district) {
                             return DropdownMenuItem(
@@ -190,6 +198,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.5,
                         child: DropdownButtonFormField(
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
                           value: _selectedPollingDivision,
                           items: _pollingDivisions.map((division) {
                             return DropdownMenuItem(
@@ -340,10 +349,16 @@ class _RegistrationFormState extends State<RegistrationForm> {
               ),
             ),
           ),
-          const Expanded(
-            flex: 1,
-            child: RightNavView(),
-          ),
+          if (isDesktop(context))
+            const Expanded(
+              flex: 1,
+              child: RightNavView(),
+            )
+          else
+            const Expanded(
+                flex: 1,
+                child: BottomNavView(),
+              ),
         ],
       ),
     );

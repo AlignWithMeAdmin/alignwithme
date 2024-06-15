@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'quizPage.dart';
+
+bool isDesktop(BuildContext context) => MediaQuery.of(context).size.width >= 600;
+bool isMobile(BuildContext context) => MediaQuery.of(context).size.width < 600;
 
 //Left sidebar
 class LeftNavView extends StatelessWidget {
@@ -55,11 +59,15 @@ class ContentView extends StatelessWidget {
                   ),
                   const SizedBox(height: 20.0),
                   const Center(
-                    child: Text(
-                      'Get the following quiz and answer it to see who align with your views of governance',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18.0,
+                    child: Padding(
+                      padding:EdgeInsets.all(20.0),
+                      child: Text(
+                        'Get the following quiz and answer it to see who align with your views of governance',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18.0,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
                     ),
                   ),
@@ -87,10 +95,9 @@ class ContentView extends StatelessWidget {
                   20.0), // Add padding around the container
               child: Container(
                 color: const Color.fromARGB(255, 157, 160, 163),
-                child: SingleChildScrollView(
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: 20.0), // Add horizontal padding
+                child: const SingleChildScrollView(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.0), // Add horizontal padding
                     child: Column(
                       mainAxisSize: MainAxisSize.min, // Set mainAxisSize to min
                       crossAxisAlignment:
@@ -141,5 +148,56 @@ class RightNavView extends StatelessWidget {
           // ),
           ),
     );
+  }
+}
+
+class TopNavView extends StatelessWidget{
+  const TopNavView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      color: const Color.fromARGB(255, 205, 209, 245),
+      child: Center(
+          // child: ElevatedButton(
+          //   onPressed: () {
+          //     // Navigate or perform actions related to red view
+          //   },
+          //   child: const Text('Right Nav'),
+          // ),
+          ),
+    );
+  }
+}
+
+class BottomNavView extends StatelessWidget{
+  const BottomNavView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      color: const Color.fromARGB(255, 205, 209, 245),
+      child: Center(
+          // child: ElevatedButton(
+          //   onPressed: () {
+          //     // Navigate or perform actions related to red view
+          //   },
+          //   child: const Text('Right Nav'),
+          // ),
+          ),
+    );
+  }
+}
+
+class ResponsiveRowColumn extends StatelessWidget {
+  final List<Widget> children;
+
+  ResponsiveRowColumn({required this.children});
+
+  @override
+  Widget build(BuildContext context) {
+    return isDesktop(context) ? Row(children: children) : Column(children: children);
   }
 }
