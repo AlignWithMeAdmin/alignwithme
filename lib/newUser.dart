@@ -44,10 +44,10 @@ class _NewUserState extends State<NewUser> {
               ),
           Expanded(
             flex: isDesktop(context) ? 3: 8,
-            child: Center(
-              child: Form(
-                key: _formKey,
-                child: SingleChildScrollView(
+            child: SingleChildScrollView(
+              child: Center(
+                child: Form(
+                  key: _formKey,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
