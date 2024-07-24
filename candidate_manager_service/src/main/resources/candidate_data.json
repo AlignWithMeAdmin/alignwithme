@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Candidate1",
+    "politicalParty": "Party1",
+    "partySymbol": "1",
+    "district": "District1"
+  },
+  {
+    "name": "Candidate2",
+    "politicalParty": "Party2",
+    "partySymbol": "2",
+    "district": "District2"
+  },
+  {
+    "name": "Candidate3",
+    "politicalParty": "Party1",
+    "partySymbol": "1",
+    "district": "District3"
+  },
+  {
+    "name": "Candidate4",
+    "politicalParty": "Party1",
+    "partySymbol": "1",
+    "district": "District1"
+  },
+  {
+    "name": "Candidate5",
+    "politicalParty": "Party2",
+    "partySymbol": "2",
+    "district": "District2"
+  }
+]

@@ -1,0 +1,5 @@
+com\example\candidate_manager\CandidateManagerApplication.class
+com\example\candidate_manager\repository\CandidateRepository.class
+com\example\candidate_manager\controller\CandidateController.class
+com\example\candidate_manager\config\SwaggerConfig.class
+com\example\candidate_manager\model\Candidate.class
