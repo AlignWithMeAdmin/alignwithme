@@ -1,0 +1,59 @@
+[
+  {
+    "id": "q1",
+    "districtId": "d1",
+    "question": "First question?",
+    "answers": [
+      {
+        "id": "a1",
+        "answer": "Answer 1"
+      },
+      {
+        "id": "a2",
+        "answer": "Answer 2"
+      },
+      {
+        "id": "a3",
+        "answer": "Answer 3"
+      }
+    ]
+  },
+  {
+    "id": "q2",
+    "districtId": "d1",
+    "question": "Second question?",
+    "answers": [
+      {
+        "id": "a4",
+        "answer": "Answer 4"
+      },
+      {
+        "id": "a5",
+        "answer": "Answer 5"
+      },
+      {
+        "id": "a6",
+        "answer": "Answer 6"
+      }
+    ]
+  },
+  {
+    "id": "q3",
+    "districtId": "d1",
+    "question": "Third question?",
+    "answers": [
+      {
+        "id": "a7",
+        "answer": "Answer 9"
+      },
+      {
+        "id": "a8",
+        "answer": "Answer 9"
+      },
+      {
+        "id": "a9",
+        "answer": "Answer 9"
+      }
+    ]
+  }
+]
