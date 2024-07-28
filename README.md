@@ -1,20 +1,8 @@
-<<<<<<< HEAD
-# alignwithme
-=======
-# align_with_me
+## Clone the Repository
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
->>>>>>> 5dbea82 (Created alignwithme Flutter project)
+1. Navigate to the folder where you'd like to clone in your computer
+2. Open cmd or terminal and run the following commands
+3. git clone --filter=blob:none --sparse  https://github.com/AlignWithMeAdmin/alignwithme.git
+4. cd alignwithme
+5. git sparse-checkout add %subdirectory-to-be-cloned%
+6. cd %your-subdirectory%
