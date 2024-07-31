@@ -114,23 +114,67 @@ class AlighWithMeLayout extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        child: const Row(
-          children: [
-            Expanded(
-              flex: 1,
-              child: LeftNavView(),
-            ),
-            Expanded(
-              flex: 4,
-              child: ContentView(),
-            ),
-            Expanded(
-              flex: 1,
-              child: RightNavView(),
-            ),
-          ],
+        child: isDesktop(context) ?
+          Row(
+            children: [
+              const Expanded(
+                flex: 1,
+                child: LeftNavView(),
+              ),
+              const Expanded(
+                flex: 4,
+                child: ContentView(),
+              ),
+              const Expanded(
+                flex: 1,
+                child: RightNavView(),
+              ),
+            ],
+          )
+        : Column(
+            children: [
+              Expanded(
+                flex: 1,
+                child: TopNavView(),
+              ),
+              const Expanded(
+                flex: 8,
+                child: ContentView(),
+              ),
+              const Expanded(
+                flex: 1,
+                child: BottomNavView(),
+              ),
+            ],
+          ),
         ),
-      ),
+    );
+  }
+}
+
+//Makes form fields, buttons change with screen size
+class PaddedWidget extends StatelessWidget {
+  final Widget child;
+
+  const PaddedWidget({
+    Key? key,
+    required this.child,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        double paddingValue = constraints.maxWidth * 0.25;
+
+        return Padding(
+          padding: EdgeInsets.symmetric(horizontal: paddingValue),
+          child: Container(
+            //width: constraints.maxWidth * paddingPercentage, // Example: 25% of the column width
+            child: child,
+          ),
+        );
+      },
     );
   }
 }

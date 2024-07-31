@@ -14,14 +14,20 @@ class ResultPage extends StatelessWidget {
     return Scaffold(
       appBar: const AlignWithMeAppBar(),
       backgroundColor: const Color.fromARGB(255, 157, 160, 163),
-      body: Row(
+      body: ResponsiveRowColumn(
         children: [
-          const Expanded(
-            flex: 1,
-            child: LeftNavView(),
-          ),
+          if (isDesktop(context))
+            const Expanded(
+              flex: 1,
+              child: LeftNavView(),
+            )
+          else
+            const Expanded(
+                flex: 1,
+                child: TopNavView(),
+              ),
           Expanded(
-            flex: 3,
+            flex: isDesktop(context) ? 3: 8,
             child: Padding(
               padding: const EdgeInsets.all(20.0),
               child: SingleChildScrollView(
@@ -71,33 +77,63 @@ class ResultPage extends StatelessWidget {
                       child: BarChartWidget(),
                     ),
                     const SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const AlighWithMeLayout()),
-                            );
-                          },
-                          child: const Text('Restart Quiz'),
-                        ),
-                        const SizedBox(width: 16),
-                        ElevatedButton(
-                          onPressed: () {
-                            //Download, email, social media? Need account?
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const LoginPage()),
-                            );
-                          },
-                          child: const Text('Share Results'),
-                        ),
-                      ],
+                    isDesktop(context) ?
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const AlighWithMeLayout()),
+                              );
+                            },
+                            child: const Text('Restart Quiz'),
+                          ),
+                          const SizedBox(width: 16),
+                          ElevatedButton(
+                            onPressed: () {
+                              //Download, email, social media? Need account?
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const LoginPage()),
+                              );
+                            },
+                            child: const Text('Share Results'),
+                          ),
+                        ],
+                      )
+                    : Center(
+                      child: Column(
+                            children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const AlighWithMeLayout()),
+                                );
+                              },
+                              child: const Text('Restart Quiz'),
+                            ),
+                            const SizedBox(height: 16.0),
+                            ElevatedButton(
+                              onPressed: () {
+                                //Download, email, social media? Need account?
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const LoginPage()),
+                                );
+                              },
+                              child: const Text('Share Results'),
+                            ),
+                          ],
+                      ),
                     ),
                     const SizedBox(height: 20),
                   ],
@@ -105,10 +141,16 @@ class ResultPage extends StatelessWidget {
               ),
             ),
           ),
-          const Expanded(
-            flex: 1,
-            child: RightNavView(),
-          ),
+          if (isDesktop(context))
+            const Expanded(
+              flex: 1,
+              child: RightNavView(),
+            )
+          else
+            const Expanded(
+                flex: 1,
+                child: BottomNavView(),
+              ),
         ],
       ),
     );

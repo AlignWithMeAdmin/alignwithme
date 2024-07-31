@@ -128,14 +128,20 @@ class _QuizViewState extends State<QuizView> {
       //   backgroundColor: const Color.fromARGB(255, 64, 97, 124),
       // ),
       appBar: const AlignWithMeAppBar(),
-      body: Row(
+      body: ResponsiveRowColumn(
         children: [
-          const Expanded(
-            flex: 1,
-            child: LeftNavView(),
-          ),
+          if (isDesktop(context))
+            const Expanded(
+              flex: 1,
+              child: LeftNavView(),
+            )
+          else
+            const Expanded(
+                flex: 1,
+                child: TopNavView(),
+              ),
           Expanded(
-            flex: 3, // Adjust the flex factor as needed
+            flex: isDesktop(context) ? 3: 8, // Adjust the flex factor as needed
             child: PageView.builder(
               controller: _pageController,
               itemCount: _questions.length,
@@ -144,10 +150,16 @@ class _QuizViewState extends State<QuizView> {
               },
             ),
           ),
-          const Expanded(
-            flex: 1,
-            child: RightNavView(),
-          ),
+          if (isDesktop(context))
+            const Expanded(
+              flex: 1,
+              child: RightNavView(),
+            )
+          else
+            const Expanded(
+                flex: 1,
+                child: BottomNavView(),
+              ),
         ],
       ),
     );
