@@ -1,4 +1,5 @@
 package org.alignwithme.masterdata;
+
 /*
 import java.util.ArrayList;
 import java.util.List;
@@ -15,18 +16,35 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class MasterDataApplication { //implements CommandLineRunner { //add this when testing queries also add other commented code
 
-/*	@Autowired
+	/*
+	@Autowired
 	private ElectorateAreaRepository repository;
 
-*/
+
+	@Autowired
+	private AgeGroupRepository ageGroupRepository;
+
+	@Autowired
+	private GenderRepository genderRepository;
+
+	@Autowired
+	private LevelOfEducationRepository levelOfEducationRepository;
+
+	@Autowired
+	private PoliticalPartyRepository politicalPartyRepository;
+	*/
 	public static void main(String[] args) {
 		SpringApplication.run(MasterDataApplication.class, args);
 	}
-
-/*	@Override
+/*
+	@Override
 	public void run(String... args) throws Exception {
 
 		repository.deleteAll();
+		ageGroupRepository.deleteAll();
+		genderRepository.deleteAll();
+		levelOfEducationRepository.deleteAll();
+		politicalPartyRepository.deleteAll();
 
 		// save a couple of polling districts
 		ArrayList<District> districts1, districts2;
@@ -46,7 +64,24 @@ public class MasterDataApplication { //implements CommandLineRunner { //add this
 		repository.save(new Province("1", "North Central", districts1));
 		repository.save(new Province("2", "Eastern", districts2));
 
+		ageGroupRepository.save(new AgeGroup("01", "18-29"));
+		ageGroupRepository.save(new AgeGroup("02", "30-49"));
+		ageGroupRepository.save(new AgeGroup("03", "50-64"));
+		ageGroupRepository.save(new AgeGroup("04", "65+"));
 
+		genderRepository.save(new Gender("01", _Gender.FEMALE));
+		genderRepository.save(new Gender("02", _Gender.MALE));
+		genderRepository.save(new Gender("03", _Gender.NONBINARY));
+
+		levelOfEducationRepository.save(new LevelOfEducation("01", "Bachelor degree or above"));
+		levelOfEducationRepository.save(new LevelOfEducation("02", "Diploma"));
+		levelOfEducationRepository.save(new LevelOfEducation("03", "A-Levels"));
+		levelOfEducationRepository.save(new LevelOfEducation("04", "O-levels or below"));
+
+		politicalPartyRepository.save(new PoliticalParty("01", "Jathika Jana balawegaya", "./assets/JJB.png"));
+		politicalPartyRepository.save(new PoliticalParty("02", "Samagi Jana balawegaya", "./assets/SJB.png"));
+		politicalPartyRepository.save(new PoliticalParty("03", "United National Party", "./assets/UNP.jpeg"));
+		politicalPartyRepository.save(new PoliticalParty("04", "Sri Lanka Podujana Peramuna", "./assets/SLPP.png"));
 		//fetch all districts
 		for (DistrictsOnly district : repository.findAllDistricts()) {
 			System.out.println(district.getDistricts());
@@ -70,7 +105,7 @@ public class MasterDataApplication { //implements CommandLineRunner { //add this
 		System.out.println(districts);
 		System.out.println("--------------------------------");
 
-		//fetch polling divisions by province name and district name //query gives unexpectedoutput..returns null.
+		//fetch polling divisions by province name and district name 
 		Optional<List<DistrictsOnly>> districts4 = repository.getPollingDivisionsbyProvinceNameAndDistrictName("North Central", "Polonnaruwa");
 		if (districts4.isPresent()){
 			List<PollingDivision> pollingDivisions = new ArrayList<PollingDivision>();
@@ -84,7 +119,7 @@ public class MasterDataApplication { //implements CommandLineRunner { //add this
 			System.out.println("--------------------------------");
 		}
 
-		//query gives unexpectedoutput..returns invLID OUTPUT.
+		
 		Optional<List<DistrictsOnly>> districts3 = repository.getPollingDivisionsbyDistrictName("Anuradhapura"); //mongodb always returns a province.
 		if (districts3.isPresent()){
 			List<PollingDivision> pollingDivisions2 = new ArrayList<PollingDivision>(); //to get dstrict, we use the district only interface.
@@ -99,5 +134,5 @@ public class MasterDataApplication { //implements CommandLineRunner { //add this
 		}
 
 	}
-		*/
+*/
 }
