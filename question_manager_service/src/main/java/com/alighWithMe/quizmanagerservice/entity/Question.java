@@ -14,7 +14,5 @@ public class Question {
 
     @Id
     private String id;
-    private String category;
     private String question;
-    private String[] answers;
 }
