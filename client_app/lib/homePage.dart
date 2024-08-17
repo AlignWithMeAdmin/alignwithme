@@ -104,7 +104,7 @@ class ContentView extends StatelessWidget {
                           CrossAxisAlignment.start, // Align text to the left
                       children: [
                         Text(
-                          'The definition of candidate selection methods is the predominantly nonstandardized and unregimented mechanisms by which political parties choose their candidates for the general elections. The importance of candidate selection is not only for the candidates and their parties, but also for their parent legislature and its performance – it influences the balance of power within the party, determines the personal composition of parliaments, and impacts on the behavior of legislators.',
+                          'Align With Me is a web application designed to help voters understand political leaders\' positions on key issues. We focus on the five most prominent issues currently facing the country. For each issue, users are presented with four choices that span the spectrum of possible opinions—from progressive to regressive, liberal to conservative, and democratic to authoritarian.',//The definition of candidate selection methods is the predominantly nonstandardized and unregimented mechanisms by which political parties choose their candidates for the general elections. The importance of candidate selection is not only for the candidates and their parties, but also for their parent legislature and its performance – it influences the balance of power within the party, determines the personal composition of parliaments, and impacts on the behavior of legislators.
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 16.0,
@@ -112,12 +112,106 @@ class ContentView extends StatelessWidget {
                         ),
                         SizedBox(height: 20), // Add space between the two texts
                         Text(
-                          'The definition of candidate selection methods is the predominantly nonstandardized and unregimented mechanisms by which political parties choose their candidates for the general elections.',
+                          'Users can see which political leaders share similar stances by selecting the options that best reflect their views. This process allows voters to base their decisions on factual alignments rather than being swayed by populist strategies. Align With Me aims to promote a more informed and transparent democratic process, helping voters make choices that truly reflect their values and priorities.',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 16.0,
                           ),
                         ),
+                        SizedBox(height: 20), // Add space between the two texts
+                        Text(
+                          'About Us',
+                          style:TextStyle(
+                            color: Colors.black,
+                            fontSize: 24.0,
+                          )
+                        ),
+                        SizedBox(height: 20), // Add space between the two texts
+                        Text.rich(
+                          TextSpan(
+                            text: 'This web application is developed and maintained by ',
+                            children: <TextSpan>[
+                              TextSpan(text: ' Digital Democracy Collective Sri Lanka ', style: TextStyle(fontStyle: FontStyle.italic)),
+                              TextSpan(
+                                text: '. Digital Democracy Collective Sri Lanka is a dynamic community uniting passionate software/IT/digital engineers with the help of tech enthusiasts, activists, policymakers, and citizens dedicated to harnessing technological innovation for democratic advancement in Sri Lanka.', 
+                                
+                              ),
+                            ],
+                            style:TextStyle(
+                              color: Colors.black,
+                              fontSize: 16.0,
+                            )
+                          ),
+                        ),
+                        SizedBox(height: 20), // Add space between the two texts
+                        Text(
+                          'Our Mission',
+                          style:TextStyle(
+                            color: Colors.black,
+                            fontSize: 20.0,
+                          )
+                        ),
+                        SizedBox(height: 20), // Add space between the two texts
+                        Text(
+                          'We are committed to exploring the intersection of technology and democracy, leveraging relevant engineering expertise, and innovative digital solutions to bolster democratic processes and civic engagement across Sri Lanka.',
+                          style:TextStyle(
+                            color: Colors.black,
+                            fontSize: 16.0,
+                          )
+                        ),
+                        SizedBox(height: 20), // Add space between the two texts
+                        Text(
+                          'Key Focus Areas',
+                          style:TextStyle(
+                            color: Colors.black,
+                            fontSize: 20.0,
+                          )
+                        ),
+                        SizedBox(height: 20), // Add space between the two texts
+                        Text.rich(
+                          TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: 'Technology for Civic Empowerment:',
+                                style:TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16.0,)
+                              ),
+                              TextSpan(
+                                text: ' Explore and develop cutting-edge technological tools and platforms that empower citizens, enhance transparency, and foster inclusive participation in governance.',
+                                style:TextStyle(color: Colors.black, fontSize: 16.0,)
+                              )
+                            ]
+                          )
+                        ),
+                        SizedBox(height: 20), // Add space between the two texts
+                        Text.rich(
+                          TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: 'Engineering Solutions for Democracy:',
+                                style:TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16.0,)
+                              ),
+                              TextSpan(
+                                text: ' Channel engineering skills to design and implement digital initiatives that address challenges in democratic processes, ensuring efficiency, accessibility, and accountability.',
+                                style:TextStyle(color: Colors.black, fontSize: 16.0,)
+                              )
+                            ]
+                          )
+                        ),
+                        SizedBox(height: 20), // Add space between the two texts
+                        Text.rich(
+                          TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: 'Collaboration and Knowledge Sharing:',
+                                style:TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16.0,)
+                              ),
+                              TextSpan(
+                                text: ' Foster a collaborative environment where expertise and knowledge sharing lead to the creation of impactful projects and initiatives at the intersection of technology and democracy.',
+                                style:TextStyle(color: Colors.black, fontSize: 16.0,)
+                              )
+                            ]
+                          )
+                        )
                       ],
                     ),
                   ),
