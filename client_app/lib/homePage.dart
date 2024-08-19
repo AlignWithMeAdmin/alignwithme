@@ -104,7 +104,7 @@ class ContentView extends StatelessWidget {
                           CrossAxisAlignment.start, // Align text to the left
                       children: [
                         Text(
-                          'Align With Me is a web application designed to help voters understand political leaders\' positions on key issues. We focus on the five most prominent issues currently facing the country. For each issue, users are presented with four choices that span the spectrum of possible opinions—from progressive to regressive, liberal to conservative, and democratic to authoritarian.',//The definition of candidate selection methods is the predominantly nonstandardized and unregimented mechanisms by which political parties choose their candidates for the general elections. The importance of candidate selection is not only for the candidates and their parties, but also for their parent legislature and its performance – it influences the balance of power within the party, determines the personal composition of parliaments, and impacts on the behavior of legislators.
+                          'Align With Me is a web application designed by Digital Democracy Collective Sri Lanka to help voters understand political leaders\' positions on key issues. We focus on the five most prominent issues currently facing the country. For each issue, users are presented with four choices that span the spectrum of possible opinions—from progressive to regressive, liberal to conservative, and democratic to authoritarian.',//The definition of candidate selection methods is the predominantly nonstandardized and unregimented mechanisms by which political parties choose their candidates for the general elections. The importance of candidate selection is not only for the candidates and their parties, but also for their parent legislature and its performance – it influences the balance of power within the party, determines the personal composition of parliaments, and impacts on the behavior of legislators.
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 16.0,
@@ -120,7 +120,7 @@ class ContentView extends StatelessWidget {
                         ),
                         SizedBox(height: 20), // Add space between the two texts
                         Text(
-                          'About Us',
+                          'About Digital Democracy Collective Sri Lanka',
                           style:TextStyle(
                             color: Colors.black,
                             fontSize: 24.0,
@@ -210,6 +210,14 @@ class ContentView extends StatelessWidget {
                                 style:TextStyle(color: Colors.black, fontSize: 16.0,)
                               )
                             ]
+                          )
+                        ),
+                        SizedBox(height: 20),
+                        Text(
+                          'Contact us at admin@alignwithme.org',
+                          style:TextStyle(
+                            color: Colors.black,
+                            fontSize: 14.0,
                           )
                         )
                       ],
